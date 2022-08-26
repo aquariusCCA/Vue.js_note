@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06-v-bind動態綁定style(數組語法)</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2 :style="[baseStyles, overidingStyles]">{{message}}</h2>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!',
+            baseStyle: {backgroundColor: 'red'},
+            overidingStyles: {fontSize: '100px'}
+        }
+    })
+</script>
+</html>
+<!--
+    綁定方式二: 數組語法
+        :style="[baseStyles, overidingStyles]"
+        style 後面跟的是一個數組類型，多個值以，分隔即可。     
+-->

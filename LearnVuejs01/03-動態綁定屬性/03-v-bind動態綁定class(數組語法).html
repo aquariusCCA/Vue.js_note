@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-v-bind動態綁定class(數組語法)</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .active {
+            color: red;
+        }
+
+        .line{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 用法一: 直接通過 [] 綁定 class -->
+        <h2 v-bind:class="[active, line]">{{message}}</h2>
+
+
+        <!-- 用法二:  -->
+        <h2 v-bind:class="getClasses()">{{message}}</h2>
+
+        <!-- 補充變量和字符串 -->
+            <!-- test 不加上 '' 則表示變量，最終 class 的值是 testAAA -->
+            <h2 v-bind:class="[test]">testAAA</h2>
+
+            <!-- test 加上 '' 則表示字符串，最終 class 的值是 test -->
+            <h2 v-bind:class="['test']">test</h2>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!',
+            active: 'active',
+            line: 'line',
+            test: 'testAAA'
+        },
+        methods: {
+            getClasses: function(){
+                return [this.active, this.line]
+            }
+        }
+    })
+</script>
+</html>

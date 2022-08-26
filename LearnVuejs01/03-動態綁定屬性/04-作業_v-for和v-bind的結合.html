@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-作業_v-for和v-bind的結合</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- 需求: 第一條紅色，其他的點擊一下才會變成紅色 -->
+    <div id="app">
+        <ul v-for="(item, index) in movies">
+            <div v-if="index === 0" style="color: red;">{{item}}</div>
+            <div v-if="index >= 1" v-bind:style="aaa" v-on:click="change()">
+                {{item}}
+            </div>
+        </ul>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            aaa: 'color: black',
+            flag: false,
+            movies: ['海王', '火影忍者', '進擊的巨人', '夏日時光']
+        },
+        methods: {
+            change: function(event){
+                if(!this.flag){
+                    this.aaa = 'color: red;'
+                    this.flag = true 
+                }else{
+                    this.aaa = 'color: black;'
+                    this.flag = false 
+                }
+            }
+        }
+    })
+</script>
+</html>

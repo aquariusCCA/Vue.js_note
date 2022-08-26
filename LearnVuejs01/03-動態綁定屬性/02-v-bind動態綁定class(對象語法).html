@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-v-bind動態綁定class(對象語法)</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 1. 以下這樣做是沒有意義的，脫褲子放屁。 -->
+            <!-- <h2 v-bind:class="active">{{message}}</h2> -->
+            <!-- 簡寫形式: -->
+            <!-- <h2 :class="active">{{message}}</h2> -->
+
+
+        <!-- 
+        2. 使用對象的方式，通過 isActive 所表示的 
+        boolean 值，來決定是否要添加到 class 屬性。  
+        -->
+            <h2 v-bind:class="{active: isActive}">{{message}}</h2>
+
+            <!-- v-bind:class 不會覆蓋掉原有的 class，Vus.js 會將它們做一個合併的動作。 -->
+            <h2 class="title" v-bind:class="{active: isActive}">{{message}}</h2>
+
+
+        <!-- 3. 通過點擊按鈕切換 class     -->
+            <!-- 這邊調用 btnClick 函數時，其實真正的寫法是 btnClick()
+            , 這邊只是省略掉了 ()。 -->
+            <button v-on:click="btnClick">按鈕</button>
+    </div>
+</body>
+<script>
+    // 配合第一點使用。
+    // const app = new Vue({
+    //     el: '#app',
+    //     data: {
+    //         message: '你好啊!',
+    //         active: 'active'
+    //     }
+    // })
+
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!',
+            isActive: true,
+            isLine: true
+        },
+        methods: {
+            btnClick: function(){
+                this.isActive = !this.isActive
+            }
+        }
+    })
+</script>
+</html>
