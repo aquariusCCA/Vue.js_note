@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-計算屬性的setter和getter</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 計算屬性並不是一個函數，他是一個屬性，所以使用時不需要加上 () -->
+        <h2>{{fullName}}</h2>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            firstName: 'Kobe',
+            lastName: 'Brynat'
+        },
+        computed: {
+            // 這種方式是計算屬性的簡寫
+            // fullName: function(){
+            //     return this.firstName + ' ' + this.lastName
+            // }
+
+            fullName: {
+                // 因為一般情況下，我們不希望隨邊設置 fullName 的值
+                // 所以都會把 set 方法刪除，這樣就只剩下 get 方法，
+                // 所以只剩下 get 方法就可以使用簡寫。
+                set: function(newValue){
+                    console.log('set 方法被執行了')
+                    console.log(newValue) // newValue: 就是更改後的值。
+
+                    const names = newValue.split(' ')
+                    this.firstName = names[0]
+                    this.lastName = names[1]
+
+                },
+                get: function(){
+                    return this.firstName + ' ' + this.lastName
+                }
+            }
+        }
+    })
+</script>
+</html>

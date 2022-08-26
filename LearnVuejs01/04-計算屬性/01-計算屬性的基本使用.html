@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-計算屬性的基本使用</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 直接拚串 -->
+        <h2>{{firstName + ' ' + lastName}}</h2>
+
+
+        <!-- 使用函數 -->
+        <h2>{{getFullName()}}</h2>
+
+
+        <!-- 使用計算屬性 -->
+        <!-- 計算屬性本質就是屬性，所以不需要加上 () -->
+        <h2>{{fullName}}</h2>
+    </div>    
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            firstName: 'Xiao',
+            lastName: 'shilin'
+        },
+        computed: { // computed: 中文翻譯是計算。
+            fullName: function(){
+                return this.firstName + ' ' + this.lastName
+            }
+        },
+        methods: {
+            getFullName(){
+                return this.firstName + ' ' + this.lastName 
+            }
+        }
+    })
+</script>
+</html>

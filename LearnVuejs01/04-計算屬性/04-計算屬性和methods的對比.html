@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-計算屬性和methods的對比</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 1. 直接拼接 -->
+        <h2>{{firstName + ' ' + lastName}}</h2>
+
+
+        <!-- 2. 通過 methods  -->
+        <!-- 使用 methods 定義的方法，每次都會重新做計算，性能差。 -->
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        
+
+        <!-- 3. 通過計算屬性 -->
+        <!-- 
+        使用計算屬性時，只要 data 沒有改變，就會繼續使用
+        相當於計算屬性會提供一個緩存機制。 
+        -->
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            firstName: 'Kobe',
+            lastName: 'Brynat'
+        },
+        methods: {
+            getFullName: function(){
+                console.log('getFullName')
+                return this.firstName + ' ' + this.lastName
+            }
+        },
+        computed: {
+            fullName: {
+                get: function(){
+                    console.log('fullName')
+                    return this.firstName + ' ' + this.lastName
+                }
+            }
+        }
+    })
+</script>
+</html>
