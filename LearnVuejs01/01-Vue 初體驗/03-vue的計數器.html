@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue的計數器</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>當前計數: {{counter}}</h2>
+
+        <!-- 不推薦以下這種寫法 -->
+        <!-- <button v-on:click="counter++">+</button> -->
+        <!-- <button v-on:click="counter--">-</button> -->
+
+        <!-- 建議寫法 -->
+        <!-- <button v-on:click="add">+</button> -->
+        <!-- <button v-on:click="sub">-</button> -->
+        
+        <!-- 簡寫，簡寫又叫做語法糖 -->
+        <button @click="add">+</button>
+        <button @click="sub">-</button>
+
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            counter: 0
+        },
+        methods: { // methods: 定義屬於 Vue 的一些方法，可以在其他地方調用，也可以在指令中使用。
+            add: function(){
+                console.log('add 被執行了')
+                this.counter++
+            },
+            sub: function(){
+                console.log('sub 被執行了')
+                this.counter--
+            }
+        }
+    })
+</script>
+</html>
