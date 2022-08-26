@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-對象字面量的增強寫法</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1. 屬性的增強寫法
+        const name = 'why';
+        const age = 18;
+        const height = 1.88;
+
+        // ES5 的寫法
+        // const obj = {
+        //     name: name,
+        //     age: age,
+        //     height: height
+        // }
+
+        // console.log(obj);
+
+        // ES6 的寫法    
+        // const obj = {
+        //     name, // key 是 name，value 是 why
+        //     age, // key 是 age，value 是 18
+        //     height // key 是 height，value 是 1.88
+        // }
+
+        // console.log(obj)
+
+
+    // 2. 函數的增強寫法
+        // ES5 的寫法
+        // const obj = {
+        //     run: function(){
+
+        //     },
+        //     eat: function(){
+
+        //     }
+        // }
+
+        // ES6 的寫法
+        // const obj = {
+        //     run(){
+
+        //     },
+        //     eat(){
+
+        //     }
+        // }
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-塊級作用域</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 1. 變量作用域: 變量在甚麼範圍內都是可用的
+        // {
+        //     var name = 'why'
+        //     console.log(name)
+        // }
+
+        // 在這裡仍然可以訪問到 name 
+        // console.log(name)
+
+
+    // 2. 沒有塊級作用域引起的問題
+        // var func;
+
+        // if(true){
+        //     var str = 'test';
+
+        //     func = function(){
+        //         console.log(str);
+        //     }
+        // }
+
+        // str = 'best'; // 在這邊更改了 str 的數據。
+        
+        // func(); // 原本想要輸出 test，但是不小心更改了。
+
+</script>
+</html>
