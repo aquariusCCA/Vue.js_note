@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-v-html指令的使用</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{url}}</h2>
+
+        <!-- v-html: 該指令後面往往會跟上一個 String 類型， -->
+        <!-- 會將 String 類型的 html 解析出來並且進行渲染 -->
+        <h2 v-html="url"></h2>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!',
+            url: '<a href="www.google.com">谷歌</a>'
+        }
+    })
+</script>
+</html>

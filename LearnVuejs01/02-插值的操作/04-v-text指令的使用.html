@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-v-text指令的使用</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}，蕭士麟</h2>
+
+        <!-- v-text 通常情況下，接收一個 String 類型的變量。 -->
+        <!-- 但是這種方式不夠靈活，會把標籤體裡面的內容覆蓋掉。 -->
+        <h2 v-text="message">，蕭士麟</h2>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!'
+        }
+    })
+</script>
+</html>

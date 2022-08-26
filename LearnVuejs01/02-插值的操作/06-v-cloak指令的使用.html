@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06-v-cloak指令的使用</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- v-cloak: 我們瀏覽器可能會直接顯示出未編譯的 Mustache 標籤。 
+    所以可以搭配 css 將還未編譯的 Mustache 先隱藏起來，等到解析好之後在顯示出來。-->
+    <div id="app" v-cloak> <!-- cloak: 披風的意思 -->
+        <h2>{{message}}</h2>
+    </div>
+</body>
+<script>
+    setTimeout(function(){
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好啊!'
+            }
+        })
+    }, 2000)
+</script>
+</html>
