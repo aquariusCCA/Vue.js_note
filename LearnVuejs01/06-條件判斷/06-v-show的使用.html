@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06-v-show的使用</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+    結論:
+        當需要在顯示與隱藏之間切換很頻繁時，使用 v-show，
+        當只有一次切換時，使用 v-if。 
+    -->
+    <div id="app">
+        <!-- v-if: 當條件為 false 時，包含 v-if 的元素，根本不會存在 dom 中。 -->
+            <h2 v-if="isShow">{{message}}</h2>
+
+        <!-- v-show: 當條件為 fasle 時，v-show 只是給我們的元素添加一個行內樣式: display: none -->
+            <h2 v-show="isShow">{{message}}</h2>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!',
+            isShow: true
+        }
+    })
+</script>
+</html>

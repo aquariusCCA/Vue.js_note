@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-用戶切換的小案例</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span v-if="isUser">
+            <label for="username">用戶帳號</label>
+            <input type="text" id="username">
+        </span>
+        <span v-else>
+            <label for="email">用戶郵箱</label>
+            <input type="text" id="email">
+        </span>
+        <button @click="change">切換類型</button>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            isUser: true
+        },
+        methods: {
+            change(){
+                this.isUser = !this.isUser
+            }
+        }
+    })
+</script>
+</html>

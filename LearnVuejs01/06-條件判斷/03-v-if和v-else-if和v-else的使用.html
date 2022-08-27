@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-v-if和v-else-if和v-else的使用</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 1. 當我們條件很多的時候不建議這樣寫，而是寫一個計算屬性的方式去判斷。 -->
+            <!-- 
+            <h2 v-if="score >= 90">優秀</h2>
+            <h2 v-else-if="score >= 80">良好</h2>
+            <h2 v-else-if="score >= 60">及格</h2>
+            <h2 v-else>不及格</h2> 
+            -->
+
+        <!-- 2. 建議寫法 -->
+            <h2>{{result}}</h2>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            score: 99
+        },
+        computed: {
+            result(){
+                let showMessage = ''
+                if(this.score >= 90){
+                    showMessage = '優秀'
+                }else if(this.score >= 80){
+                    showMessage = '良好'
+                }else if(this.score >= 60){
+                    showMessage = '及格'
+                }else{
+                    showMessage = '不及格'
+                }
+                return showMessage
+            }
+        }
+    })
+</script>
+</html>

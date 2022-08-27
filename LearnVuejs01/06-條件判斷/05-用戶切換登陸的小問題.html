@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05-用戶切換登陸的小問題</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+    問題: 
+        當用戶在輸入框輸入 123 時，使用者點擊切換類型，123 還是存在輸入框當中
+    原因: 
+        因為 Vue.js 會把相同的 DOM 進行複用
+    解決: 
+        使用 key 屬性，也就是唯一標識，當聲明的 key 值不一樣時
+        ，Vue.js 就會創建新的 DOM  
+    -->
+    <div id="app">
+        <span v-if="isUser">
+            <label for="username">用戶帳號</label>
+            <input type="text" id="username" key="username">
+        </span>
+        <span v-else>
+            <label for="email">用戶郵箱</label>
+            <input type="text" id="email" key="email">
+        </span>
+        <button @click="change">切換類型</button>
+    </div>    
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            isUser: true
+        },
+        methods: {
+            change(){
+                this.isUser = !this.isUser
+            }
+        }
+    })
+</script>
+</html>
