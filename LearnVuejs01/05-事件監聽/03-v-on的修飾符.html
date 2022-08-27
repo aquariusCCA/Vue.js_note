@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-v-on的修飾符</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 1. stop 修飾符的使用 -->
+            <div @click="divClick">
+                <!-- stop 修飾符: 可以阻止事件的冒泡。 -->
+                <button @click.stop="btnClick">按鈕</button>
+            </div><br>
+
+
+        <!-- 2. prevent 修飾符的使用  -->
+            <form action="baidu">
+                <!-- prevent 修飾符: 阻止默認行為，也就是不會提交 -->
+                <input type="submit" value="提交" @click.prevent="submitClick">
+            </form><br>
+
+
+        <!-- 3. 監聽某個鍵盤的鍵帽  -->
+            <!-- v-on:keyup 簡寫 -> @keyup -->
+            <!-- enter修飾符: 監聽按下 Enter 鍵。  -->
+            <input type="text" v-on:keyup.enter="keyUp"><br>
+
+
+        <!-- 4. once 修飾符的使用 -->
+            <!-- once 修飾符: 只會觸發一次事件。 -->
+            <button @click.once="btn2Click">按鈕2</button>
+
+
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!'
+        },
+        methods: {
+            btnClick(){
+                console.log('btnClick')
+            },
+            divClick(){
+                console.log('divClick')
+            },
+            submitClick(){
+                console.log('submitClik')
+            },
+            keyUp(){
+                console.log('keyUp')
+            },
+            btn2Click(){
+                console.log('btn2Click')
+            }
+        }
+    })
+</script>
+</html>
