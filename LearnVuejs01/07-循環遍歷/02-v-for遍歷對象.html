@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-v-for遍歷對象</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 1. 在遍歷對象的過程中，如果只是獲取一個值，那麼獲取到的是 value -->
+            <ul>
+                <li v-for="item in info">{{item}}</li>
+            </ul>
+            <br><hr>
+
+
+        <!-- 2. 獲取 key 和 value -> (value, key)     -->
+            <ul>
+                <li v-for="(value, key) in info">
+                    {{value}} = {{key}}
+                </li>
+            </ul>
+
+
+        <!-- 3. 獲取 key、value、index -> (key, value, index) -->
+            <ul>
+                <li v-for="(value, key, index) in info">
+                    {{value}} - {{key}} - {{index}}
+                </li>
+            </ul>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            info: {
+                name: 'kevin',
+                age: 25,
+                height: 170
+            }
+        }
+    })
+</script>
+</html>

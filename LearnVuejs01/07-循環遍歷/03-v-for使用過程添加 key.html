@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-v-for使用過程添加 key</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 
+        問題: 
+            今天在 letters 數組中添加一個 'F'，順序會變成 -> A B F C D E 
+            並且這樣的插入效率非常的差。
+        解決:
+            添加 :key 屬性，並且這個 :key 的值要跟 item 一一對應。
+        總結:
+            :key 的作用主要是為了高效的更新虛擬 dom。 
+        -->
+        <ul>
+            <!-- 
+            :key 的值不要使用 index，因為 index 跟 item 並不是一一對應的
+            假設我們今天在索引 2 的位置插入一個數據，此時 item 的 index 就跟之前的不一致。 -->
+            <li v-for="item in letters" :key="item">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            letters: ['A', 'B', 'C', 'D', 'E']
+        }
+    })
+</script>
+</html>

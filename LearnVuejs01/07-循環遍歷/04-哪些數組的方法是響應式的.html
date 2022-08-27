@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-哪些數組的方法是響應式的</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in letters">
+                {{item}}
+            </li>
+        </ul>
+        <button @click="btnClick">按鈕 </button>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            letters: ['a', 'b', 'c', 'd']
+        },
+        methods: {
+            btnClick(){
+                // 1. push()
+                    // this.letters.push('aaa')
+
+                // 2. 通過索引值修改數組中的元素 (不是響應式!!!)
+                    // this.letters[0] = 'bbbbbbb' // 沒有響應式    
+
+                // 3. pop(): 刪除數組中的最後一個元素
+                    // this.letters.pop()   
+                    
+                // 4. shift(): 刪除數組中的第一個元素
+                    // this.letters.shift()
+
+                // 5. unshift(): 在數組最前面添加一到多個元素
+                    // this.letters.unshift('aaa', 'bbb')   
+                    
+                // 6. splice(): 刪除元素
+                    // const start = 2
+                    // this.letters.splice(start, this.letters.length - 2)     
+
+                // 7. sort(): 排序
+                    // this.letters.sort()    
+
+                // 8. reverse(): 反轉
+                    // this.letters.reverse()    
+            }
+        }
+    })
+</script>
+</html>
