@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06-input中的值綁定</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <label v-for="item in originHobbies" :for="item">
+            <input type="checkbox" :value="item" 
+                v-model="hobbies" :id="item"> {{item}}
+
+        </label>
+
+        <h2>你選擇的愛好: {{hobbies}}</h2>    
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!',
+            isAgree: false,
+            hobbies: [],
+            originHobbies: ['籃球', '足球', '乒乓球', '羽毛球', '高爾夫球']
+        }
+    })    
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-v-model的原理</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 
+        v-on:input="valueChange($event)" 等於 v-on:input="valueChange"
+        因為 Vue.js 默認會幫我們傳入事件對象。 
+        -->
+        <input type="text" v-bind:value="message" v-on:input="valueChange($event)">
+        <h2>{{message}}</h2>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!'
+        },
+        methods: {
+            valueChange(event){
+                this.message = event.target.value 
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07-v-model修飾符的使用</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+
+        <!-- 1. lazy 修飾符: 當我們按下 enter 才會綁定 -->
+            <input type="text" v-model="message">
+            <input type="text" v-model.lazy="message">
+            <br><hr>
+
+        <!-- 
+        2. number 修飾符: 因為 v-model 綁定的數值，默認就是 String 類型的
+        加上 number 修飾符可以轉成 number 類型
+         -->
+            <input type="number" v-model.number="age">
+            <h2>{{typeof age}}</h2>
+            <br><hr>
+
+        <!-- 3. trim 修飾符:  去除前後的空白-->
+            <input type="text" v-model.trim="name">
+            <h2>你輸入的名字: {{name}}</h2>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!',
+            age: 0,
+            name: ''
+        }
+    })
+</script>
+</html>
