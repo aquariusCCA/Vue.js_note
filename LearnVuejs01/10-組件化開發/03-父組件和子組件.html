@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-父組件和子組件.html</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <cpn1></cpn1>
+        <cpn3></cpn3>
+    </div>
+</body>
+<script>
+    // 1. 創建第一個組件
+    const cpnC1 = Vue.extend({
+        template: `
+            <div>
+                <h2>我是第一個組件</h2>
+            </div>
+        `
+    })
+
+
+    // 1. 創建第二個組件
+    const cpnC2 = Vue.extend({
+        template: `
+            <div>
+                <h2>我是第二個組件</h2>
+            </div>
+        `
+    })
+
+
+    // 1. 創建第三個組件
+    const cpnC3 = Vue.extend({
+        template: `
+            <div>
+                <h2>我是第三個組件</h2>
+                <cpn2></cpn2>
+            </div>
+        `,
+        components: { // 註冊子組件
+            // 子組件
+            cpn2: cpnC2
+        }
+    })    
+
+    // Vue 實例也可以叫做 root 組件。
+    const app = new Vue({
+        el: '#app',
+        components: { // 註冊局部組件
+            cpn1: cpnC1,
+            cpn3: cpnC3 // 父組件
+        }
+    })
+</script>
+</html>

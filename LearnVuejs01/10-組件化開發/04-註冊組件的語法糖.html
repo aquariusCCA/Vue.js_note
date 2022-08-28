@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-註冊組件的語法糖</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <cpn1></cpn1>
+        <cpn2></cpn2>
+    </div>
+</body>
+<script>
+    // 1. 全局組件註冊的語法糖
+        // 原來的寫法如下: 
+        // const cpnC1 = Vue.extend({
+        //     template: 
+        //     `
+        //         <div>
+        //             <h2>我是全局組件</h2>    
+        //         </div>
+        //     `
+        // })
+
+
+        // 2. 註冊組件
+        // 原來的寫法: Vue.component('cpn1', cpnC1) 
+        Vue.component('cpn1', {
+            template: 
+            `
+                <div>
+                    <h2>我是全局組件</h2>    
+                </div>
+            `
+        }) 
+
+    
+    // 2. 註冊局部組件的語法糖
+    const app = new Vue({
+        el: '#app',
+        components: {
+            cpn2: {
+                template: `
+                    <div>
+                        <h2>我是局部組件</h2>    
+                    </div>
+                `
+            }
+        }
+    })
+</script>
+</html>
