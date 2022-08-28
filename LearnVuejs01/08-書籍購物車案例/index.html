@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書籍購物車案例</title>
+</head>
+<body>
+    <div id="app">
+        <div v-if="books.length">
+            <!-- 1. 心法: 先把架構搭建出來 -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>書籍名稱</th>
+                            <th>出版日期</th>
+                            <th>價格</th>
+                            <th>購買數量</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <!-- 遍歷數組 -->
+                        <tr v-for="(item, index) in books">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.date}}</td>
+                            <!-- 使用自定義的函數 -->
+                                <!-- <td>{{getFinalPrice(item.price)}}</td> -->
+                            <!-- 使用過濾器  -->
+                            <td>{{item.price | showPrice()}}</td>
+                            <td>
+                                <button @click="decrement(index)" v-bind:disabled="item.count <= 1">-</button>
+                                {{item.count}}
+                                <button @click="increment(index)">+</button>
+                            </td>
+                            <td>
+                                <button @click="removeClick(index)">移除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table>
+            <h2>總價格: {{totalPrice | showPrice()}}</h2>
+        </div>
+
+        <div v-else>購物車為空</div>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script src="main.js"></script>
+<link rel="stylesheet" href="style.css">
+<script>
+
+</script>
+</html>
