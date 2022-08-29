@@ -1,0 +1,28 @@
+模塊化有兩個核心：導出和導入
+
+
+CommonJS 的導出:
+    當我們需要導出的時候，就使用 module.exports 的方式，
+    並且在 {} 中，寫上我們想要導出的屬性或方法。
+    module.exports = {
+        flag: true,
+        test(a, b){
+            return a + b
+        },
+        demo(a, b){
+            return a * b
+        }
+    }
+
+
+CommonJS 的導入:
+    當我們需要導入的時候，就要使用到 require() 這個方法；
+    這個方法的參數就指名我們需要導入的 js 文件即可。
+    // CommonJS 模塊
+    let {test, demo, flag} = require('moduleA');
+
+    // 等於
+    let _mA = require('moduleA');
+    let test = _mA.test;
+    let demo = _mA.demo;
+    let flag = _mA.flag;

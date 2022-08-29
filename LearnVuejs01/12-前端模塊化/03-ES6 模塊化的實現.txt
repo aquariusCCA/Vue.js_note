@@ -1,0 +1,103 @@
+1. 如果是如下方式引入 js 文件，很容易又會出現之前提到的命名衝突問題
+    <script src="aaa.js"></script>
+    <script src="bbb.js"></script>
+
+    解決方式就是加上 type="module" 的屬性，這樣就不會出現命名衝突的問題
+    ，表示我使用這兩個文件是使用模塊化的思想來使用的，意味著一個文件就是單獨的模塊
+    ，單獨的模塊有單獨的作用域，所以當別的文件有相同的名稱時，不會產生任何衝突。
+        <script src="aaa.js" type="module"></script>
+        <script src="bbb.js" type="module"></script>
+
+
+2. 每個 js 文件都是各自獨立的模塊，那要如何引用別的模塊中的方法或屬性 ?
+    - 使用 export 指令，用於導出變量，比如下面的代碼:
+        export let name = 'why'
+        export let age = 18
+        export let height = 1.88
+
+
+        - 上面的代碼還有另外一種寫法:
+            let name = 'why'
+            let age = 18
+            let height = 1.88
+
+            export {name, age, height}
+
+
+    - 導出函數或類
+        export function test(content){
+            console.log(content);
+        }
+
+        export class Person {
+            constructor(name, age){
+                this.name = name;
+                this.age = age;
+            }
+
+            run(){
+                console.log(this.name + '在奔跑')
+            }
+        }
+
+        - 另一種寫法
+        function test(content){
+            console.log(content);
+        }
+
+        class Person{
+            constructor(name, age){
+                this.name = name;
+                this.age = age;
+            }
+
+            run(){
+                console.log(this.name + '在奔跑');
+            }
+        }
+
+        export {test, Person}
+
+
+    - export default: 某些情況下，一個模塊中包含某個功能，我們並不希望給這個功能命名，
+    而且讓導入者可以自己來命名，這個時候就可以使用 export default。
+
+        - 注意點: export default 在同一個模塊中，不允許同時存在多個。
+
+        - 範例1: 導出變量
+            const address = '北京市'
+
+            // export default 所導出的東西只能有一個。
+            export default address
+
+        - 範例2: 導出函數
+            // 可以不需要給這個函數名字。
+            export default function (){
+                console.log('default function');
+            }
+
+            // 我們來到 main.js 中，就可以導入了(如下)
+            // 這裡的 myFunc 是自己命名的，可以根據需要命名它對應的名字。
+            import myFunc from './info.js'
+
+            // 調用
+            myFunc()
+
+
+3. 如何使用模塊導出的方法或數據 ?
+    - 我們使用 export 指令導出了模塊對外提供的接口，下面我們就可以通過 import 命令來加載對應的這個模塊了。
+    
+    - 首先，我們需要在 HTML 代碼中引入兩個 JS 文件，並且設置類型為 module
+        <script src="info.js" type="module"></script>
+        <script src="main.js" type="module"></script>
+
+    - import 指令用於導入模塊中的內容，比如 main.js 的代碼
+        import {name, age, height} from "./info.js"
+        console.log(name, age, height)
+
+    - 如果我們希望某個模塊中所有的信息都導入，一個一個導入有些麻煩，
+    可以通過 * 導入模塊中所有的 export 變量，但是通常情況下，我們需要給 * 起一個別名
+    ，方便後續的使用
+        import * as info from "./info.js"
+        console.log(info.name, info.age, info.height);
+
