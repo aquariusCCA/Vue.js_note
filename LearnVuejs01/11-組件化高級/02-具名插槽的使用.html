@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-具名插槽的使用.html</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app">
+        <cpn>
+            <!-- 替換 name 為 center 的插槽 -->
+            <span slot="center">標題</span>
+        </cpn>
+
+        <cpn>
+            <!-- 替換 name 為 left 的插槽 -->
+            <button slot="left">返回</button>
+        </cpn>
+    </div>
+
+
+    <template id="cpn">
+        <div>
+            <slot name="left">左邊</slot>
+            <slot name="center">中間</slot>
+            <slot name="right">右邊</slot>
+            <br><hr>
+        </div>
+    </template>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!'
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+            }
+        }
+    })
+</script>
+</html>

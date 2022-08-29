@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-slot-插槽的基本使用.html</title>
+    <script src="../js/vue.js"></script>
+<!--
+組件的插槽:
+ 1. 是為了讓我們封裝的組件更具有擴展性。
+ 2. 讓使用者可以決定怎件內部的一些內容到底展示什麼。
+-->    
+</head>
+<body>
+    <div id="app">
+        <cpn></cpn>
+
+        <cpn>
+            <span>哈哈哈哈</span>
+        </cpn>
+
+        <cpn></cpn>
+
+        <cpn>
+            <!-- 
+            我們這邊有 3 條語句，但是我們聲明的插槽只有一個
+            ；而 Vue,js 還是會幫我們把這 3 條語句擴充成功。 -->
+            <!-- 如果有多個值，同時放入到組件中進行替換，會一起作為替換元素。 -->
+            <i>呵呵呵</i>
+            <div>我是 div 元素</div>
+            <p>我是 p 元素</p>
+        </cpn>
+    </div>
+
+
+    <template id="cpn">
+        <div>
+            <h2>我是 cpn 組件</h2>
+
+            <!-- 給予插槽默認值 -->
+            <slot>
+                <button>按鈕</button>
+            </slot>
+
+            <br><hr>
+        </div>
+    </template>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!'
+        },
+        components: {
+            cpn: {
+                template: '#cpn'
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-作用域插槽的案例.html</title>
+    <script src="../js/vue.js"></script>
+    <!--
+        作用域插槽是 slot 一個比要難理解的點，而且官方文檔又有點說不清晰。
+        這裡我們用一句話對其做一個總結，然後我們在後續的案例中來體會
+	    父組件替換插槽的標籤，但是內容由子組件來提供。
+    -->
+</head>
+<body>
+    <div id="app">
+        <cpn></cpn>
+
+        <cpn>
+            <!-- 1. 目的是獲取子組件中的 pLanguages -->
+            <!-- 
+            2. 以前要獲取子組件中的數據必須使用 template 標籤，現在可以直接使用 div 標籤。 
+            -->
+            <template slot-scope="slot"> <!-- 3. slot-scope="slot": 表示引用插槽對象。-->
+                <span v-for="item in slot.data">{{item}}-</span>
+            </template>
+        </cpn>
+
+
+        <cpn>
+            <template slot-scope="slot">
+                <span>{{slot.data.join(' - ')}}</span>
+            </template>
+        </cpn>
+    </div>
+
+
+    <template id="cpn">
+        <div>
+            <!-- 必須在 slot 標籤中綁定 data ，並將 data 指向父組件中所需要的數據。 -->
+            <slot v-bind:data="pLanguages">
+                <ul>
+                    <li v-for="item in pLanguages">
+                        {{item}}
+                    </li>
+                </ul>
+            </slot>
+            <br><hr>
+        </div>
+    </template>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊~'
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+                data(){
+                    return {
+                        pLanguages: ['JavaScript', 'C++', 'Java', 'C#', 'Go', 'Swift']
+                    }
+                }
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-什麼是編譯的作用域.html</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!--
+        我們這邊使用的是 Vue 實例的模板，也就意味著
+        我們這邊所使用的變量，都會去 Vue 裡面找。
+    -->
+    <div id="app">
+        {{message}}
+        <cpn v-show="isShow"></cpn>
+    </div>
+
+
+    <template id="cpn">
+        <div>
+            <h2>我是 cpn 子組件</h2>
+            <!-- 
+                找的是 cpn 組件的 isShow 變量。
+                因為這個模板是存在於 cpn 組件當中的。
+             -->
+            <button v-show="isShow">按鈕</button>
+        </div>
+    </template>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!',
+            isShow: true
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+                data(){
+                    return {
+                        isShow: false
+                    }
+                }
+            }
+        }
+    })
+</script>
+</html>
