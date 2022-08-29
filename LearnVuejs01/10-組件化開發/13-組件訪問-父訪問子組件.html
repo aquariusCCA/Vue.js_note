@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13-組件訪問-父訪問子組件.html</title>
+    <script src="../js/vue.js"></script>
+<!--
+有時候我們需要父組件直接訪問子組件，子組件直接訪問父組件，或者是子組件訪問根組件。
+	父組件訪問子組件 : 使用 $children 或 $refs
+	子組件訪問父組件 : 使用 $parent  
+-->    
+</head>
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn></cpn>
+        <!-- 組件上面需要加上 ref 的屬性，之後才可以透過 $refs 引用子組件  -->
+        <cpn ref="aaa"></cpn>
+        <button @click="btnClick">按鈕</button>
+    </div>
+
+    
+    <template id="cpn">
+        <div>我是子組件</div>
+    </template>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!'
+        },
+        methods: {
+            btnClick(){
+                // 1. $.children: 獲取子組件。
+                    // console.log(this.$children)
+                    // 因為子組件可能會有多個，所以我們必須透過索引值來正確引用，我們需要的元素。
+                    // this.$children[0].showMessage()
+
+                    // 我們也可以使用循環
+                    // for(let c of this.$children){
+                    //     console.log(c.name)
+                    //     c.showMessage()
+                    // }
+
+                // 2. $refs: 推薦使用
+                    console.log(this.$refs.aaa)
+                    console.log(this.$refs.aaa.name)
+            }
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+                data() {
+                    return {
+                        name: '我是子組件的 name'
+                    }
+                },
+                methods: {
+                    showMessage() {
+                        console.log('showMessage')
+                    }
+                }
+            }
+        }
+    })     
+</script>
+</html>

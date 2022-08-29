@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09-組件通信-父傳子(props中的駝峰標識).html</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <!-- 
+        HTML 的特性是大小寫不敏感的，所以以前版本的 Vue.js 是不支持
+        駝峰命名法的，以前的解決辦法就是加上 - 
+        google 關鍵字: prop 支持駝峰
+        原文網址: https://blog.51cto.com/u_11666747/5334068
+        -->
+        <!-- <cpn v-bind:c-info="info" v-bind:child-my-message="message"></cpn> -->
+
+        <!-- 現在 Vue.js 框架已經支持駝峰命名。 -->
+        <cpn v-bind:cInfo="info" v-bind:childMyMessage="message"></cpn>
+    </div>
+
+
+    <template id="cpn">
+        <!-- 在 Vue.js 中的第一個標籤必須是 div，否則會報錯。 -->
+        <div>
+            <h2>{{cInfo}}</h2>
+            <h2>{{childMyMessage}}</h2>
+        </div>
+    </template>
+</body>
+<script>
+    const cpn = {
+        template: '#cpn',
+        props: {
+            // 示範
+            cInfo: {
+                type: Object,
+                default(){
+                    return {}
+                }
+            },
+            childMyMessage: {
+                type: String,
+                default(){
+                    return ''
+                }
+            }
+        }
+    }
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!!',
+            info: {
+                name: 'kevin',
+                age: 25,
+                height: 170
+            }
+        },
+        components: {
+            cpn
+        }
+    })
+</script>
+</html>

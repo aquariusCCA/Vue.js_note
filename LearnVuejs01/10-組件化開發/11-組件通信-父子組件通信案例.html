@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11-組件通信-父子組件通信案例.html</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <cpn :number1="num1" @num1-change="num1Change"
+             :number2="num2" @num1-change="num2Change"></cpn>
+    </div>
+
+
+    <template id="cpn">
+        <div>
+            <h2>props: {{number1}}</h2>
+            <h2>data: {{dnumber1}}</h2>
+            <input type="text" v-model="dnumber1" @input="numb1Input($event)">
+
+
+            <h2>props: {{number2}}</h2>
+            <h2>data: {{dnumber2}}</h2>
+            <input type="text" v-model="dnumber2" @input="numb2Input($event)">
+        </div>
+    </template>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            num1: 1,
+            num2: 0
+        },
+        methods: {
+            num1Change(value){
+                // 子組件發送給父組件的數據，默認都是 String 類型的。
+                console.log(typeof value)
+                // 必須做類型轉換
+                this.num1 = parseInt(value)
+            },  
+            num2Change(value){
+                // 子組件發送給父組件的數據，默認都是 String 類型的。
+                console.log(typeof value)
+                // 必須做類型轉換
+                this.num2 = parseInt(value)
+            }
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+                props: {
+                    number1: Number,
+                    number2: Number
+                },
+                data(){ // 官方建議雙向綁定不要直接綁定到 props 中的數據，而是要自己定義出 data 出來
+                    return {
+                        dnumber1: this.number1,
+                        dnumber2: this.number2
+                    }
+                },
+                methods: {
+                    numb1Input(event){
+                        // 1. 將 input 中的 value 賦值到 dnumber1 中
+                        this.dnumber1 = event.target.value
+
+                        // 2. 為了讓父組件可以修改值，發出一個事件
+                        this.$emit('num1-change', this.dnumber1)
+                    },
+                    numb2Input(event){
+                        // 1. 將 input 中的 value 賦值到 dnumber2 中
+                        this.dnumber2 = event.target.value
+                        
+                        // 2. 為了讓父組件可以修改值，發出一個事件
+                        this.$emit('num2-change', this.dnumber2)
+                    }
+                }
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07-組件中的 data 為什麼必須是函數</title>
+    <script src="../js/vue.js"></script>
+</head>
+<!--
+組件中的 data 為什麼必須是函數 ?
+    因為如果是使用對象的方式聲明 data，這樣多個組件的數據都會是相同的。
+    多個組件必須要有各自的數據，所以必須使用函數的方式聲明 data    
+    類似我們如下的概念：
+    let obj1 = abc();
+    let obj2 = abc();
+    let obj3 = abc();
+-->
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h2>當前計數: {{counter}}</h2>
+            <button @click="increment">+</button>
+            <button @click="decrement">-</button>
+        </div>
+    </template>
+</body>
+<script>
+    // 1. 註冊組件
+    Vue.component('cpn', {
+        template: '#cpn',
+        data(){
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            increment(){
+                this.counter++
+            },
+            decrement(){
+                this.counter--
+            }
+        }
+    })
+
+
+    const app = new Vue({
+        el: '#app'
+    })
+</script>
+</html>

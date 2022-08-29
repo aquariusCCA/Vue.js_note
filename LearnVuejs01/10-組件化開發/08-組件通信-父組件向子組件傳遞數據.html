@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08-組件通信-父組件向子組件傳遞數據.html</title>
+    <script src="../js/vue.js"></script>
+<!--
+子組件是不能引用副組件或者 Vue 實例的數據的。
+但是在開發當中，往往一些數據確實需要從上層傳遞到下層：
+	比如在一個頁面中，我們從服務器請求到了很多數據
+	其中一部分數據，並非是我們整個頁面的大組件來展示的，而是需要下面的子組件進行展示
+	這個時候，並不會讓子組件再次發送一個網路請求，而是直接讓父組件將數據傳遞給子組件
+
+-->    
+</head>
+<body>
+    <div id="app">
+        <!-- 
+        組件的數據傳遞必須使用 v-bind，否則會把 movies 和 message 當作字符串
+        傳遞給子組件。 -->
+        <cpn v-bind:cmovies="movies" v-bind:cmessage="message"></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <ul>
+                <li v-for="item in cmovies">{{item}}</li>
+            </ul>
+            <p>{{cmovies}}</p>
+            <p>{{cmessage}}</p>
+        </div>
+    </template>
+</body>
+<script>
+    // 父傳子: props
+    const cpn = {
+        template: '#cpn',
+        // 方式一: 
+        // props: ['cmovies', 'cmessage'], // 要將 cmovies、cmessage 當作變量。
+
+        // 方式二: 好處可以限制數據類型。
+        props: {
+            // 1. 限制數據類型，直接根據類型去匹配相應數據 ??
+            // cmovies: Array,
+            // cmessage: String
+
+            // 2. 提供一些默認值
+            cmessage: { // 可以將 Vue 實例中的 message 註解掉，看看效果。
+                type: String, // 限制類型
+                default: 'aaaa', // 提供默認值
+                required: true // 是否必須
+            },
+            cmovies: {
+                type: Array,
+                default(){ // 可以將 Vue 實例中的 movies 註解掉，看看效果。
+                    return ['k', 'e', 'v', 'i', 'n']
+                }
+            }
+        },
+        data(){
+            return {
+
+            }
+        },
+        methods: {
+
+        }
+    }
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊',
+            movies: ['海王', '海賊王', '盜夢空間', '明日邊界']
+        },
+        components: {
+            cpn // 字面量屬性增強寫法
+        }
+    })
+</script>
+</html>
+<!--
+字面量屬性增強寫法:
+ const name = 'kevin'
+
+ const obj = {
+    name: name,
+    name  ->  增強寫法，要求 key 跟變量名一致。 
+ }
+-->

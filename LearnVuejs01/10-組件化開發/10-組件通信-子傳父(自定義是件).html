@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-組件通信-子傳父(自定義是件).html</title>
+    <script src="../js/vue.js"></script>
+<!--
+google 關鍵字: 組件通信 子傳父
+原文網址: https://juejin.cn/post/6965062549771386887    
+-->
+</head>
+<body>
+    <!-- 父組件模板 -->
+    <div id="app">
+        <!-- 父組件在這邊監聽子組件發射出來的事件 -->
+        <!-- 這邊無法使用駝峰命名，只能使用 - 的方式 -->
+        <cpn @item-click="cpnClick"></cpn>
+    </div>
+
+
+    <!-- 子組件模板 -->
+    <template id="cpn">
+        <div>
+            <button v-for="item in categories" 
+                    @click="btnClick(item)">
+                {{item.name}}
+            </button>
+        </div>
+    </template>
+</body>
+<script>
+    // 子組件
+    const cpn = {
+        template: '#cpn',
+        data(){
+            return {
+                categories: [
+                    {id: 'aaa', name: '熱門推薦'},
+                    {id: 'bbb', name: '手機數碼'},
+                    {id: 'ccc', name: '家用家電'},
+                    {id: 'ddd', name: '電腦辦公'},
+                ]
+            }
+        },
+        methods: {
+            btnClick(item){
+                console.log('子組件發射事件')
+                // 發送事件到父組件，itemClick 是事件名稱。item 是我們要傳遞的數據
+                this.$emit('item-click', item) // 這邊無法使用駝峰命名，只能使用 - 的方式
+            }
+        }
+    }
+
+
+    // 父組件
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊!'
+        },
+        components: {
+            cpn
+        },
+        methods: {
+            cpnClick(data){ // data 就是子組件發送過來的數據。
+                console.log('cpnClick')
+                console.log(data)
+            }
+        }
+    })
+</script>
+</html>
