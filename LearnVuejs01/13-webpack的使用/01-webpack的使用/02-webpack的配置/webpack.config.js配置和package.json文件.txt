@@ -4,8 +4,12 @@
 	
 	- 當然可以，就是創建一個 webpack.config.js 文件
 	
+    - 當我們的準備工作跟 webpack.config.js 文件都完成之後，就可以直接在終端機上
+    執行 webpack 指令，此時就會生成打包的文件。
 
-局部安裝
+
+
+局部安裝(本地)
     - 目前為止，我們使用的 webpack 是全局的 webpack，如果我們想要使用局部打包呢 ?
         因為一個項目往往依賴特定的 webpack 版本，全局的版本可能跟這個項目的 webpack
         版本不一致，導出打包出現問題。所以通常一個項目，都有自已局部的 webpack。
@@ -21,9 +25,11 @@
 
 
 package.json 中定義啟動
-    但是，每次執行都要敲一長串有沒有覺得很不方便 ?
-    ok，我們可以在 package.json 的 scripts 中定義自己的
-    執行腳本。
+    - 但是我們通常不會使用 webpack 指令去進行打包，因為我們使用 npm 進行管理之後，
+    一般都會使用 npm run build 指令去進行打包。
+    那我們要如何將 webpack 和 npm run build 對應起來呢 ?
+    我們可以在 package.json 的 scripts 中定義自己的執行腳本。
+
 
     package.json 中的 scripts 的腳本在執行時，會按照一定的順序
     尋找命令對應的位置。

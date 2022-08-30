@@ -1,0 +1,16 @@
+我們創建如下的文件和資料夾:
+文件和文件夾解析:
+    1. dist 文件夾: 用於存放之後打包的文件。
+
+    2. src 文件夾: 用於存放我們寫好的源文件。
+        - main.js: 項目的入口文件
+        - mathUtils.js: 定義一些數學工具函數，可以在其他地方引用，並且使用。
+
+    3. index.html: 瀏覽器打開展示的首頁。
+
+    4. package.json: 通過 npm init 指令生成的。
+        - 當我們項目需要使用 node 相關的東西的時候，就需要先執行 npm init 指令。
+        - 這個文件主要就是關於當前項目的信息的。
+        
+    5. npm install: 當我們的 package.json 文件還有依賴一些東西時，npm install 指令可以幫助我們安裝一些東西的。
+        - npm install: 會生成 package-lock.json 文件。

@@ -1,1 +1,121 @@
-(()=>{var o={359:o=>{o.exports={add:function(o,n){return o+n},mul:function(o,n){return o*n}}}},n={};function r(e){var t=n[e];if(void 0!==t)return t.exports;var s=n[e]={exports:{}};return o[e](s,s.exports,r),s.exports}(()=>{"use strict";const{add:o,mul:n}=r(359);console.log(o(20,30)),console.log(n(20,30)),console.log("kevin"),console.log(25),console.log(1.7)})()})();
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__info_js__ = __webpack_require__(2);
+// 1. 使用 CommonJS 模塊化規範導入
+const {add, mul} = __webpack_require__(1)
+
+console.log(add(20, 30));
+console.log(mul(20, 30));
+
+
+// 2. 使用 ES6 的模塊化的規範導出
+
+console.log(__WEBPACK_IMPORTED_MODULE_0__info_js__["c" /* name */]);
+console.log(__WEBPACK_IMPORTED_MODULE_0__info_js__["a" /* age */]);
+console.log(__WEBPACK_IMPORTED_MODULE_0__info_js__["b" /* height */]);
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+function add(num1, num2) {
+    return num1 + num2
+}
+
+function mul(num1, num2) {
+    return num1 * num2
+}
+
+// 1. 使用 CommonJS 模塊化規範導出
+module.exports = {
+   add,
+   mul 
+}
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// 2. 使用 ES6 的模塊化的規範導入
+const name = 'kevin';
+/* harmony export (immutable) */ __webpack_exports__["c"] = name;
+
+const age = 25;
+/* harmony export (immutable) */ __webpack_exports__["a"] = age;
+
+const height = 1.70;
+/* harmony export (immutable) */ __webpack_exports__["b"] = height;
+
+
+/***/ })
+/******/ ]);
