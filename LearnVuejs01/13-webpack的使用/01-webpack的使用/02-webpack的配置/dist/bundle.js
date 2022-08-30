@@ -1,0 +1,1 @@
+(()=>{var o={359:o=>{o.exports={add:function(o,n){return o+n},mul:function(o,n){return o*n}}}},n={};function r(e){var t=n[e];if(void 0!==t)return t.exports;var s=n[e]={exports:{}};return o[e](s,s.exports,r),s.exports}(()=>{"use strict";const{add:o,mul:n}=r(359);console.log(o(20,30)),console.log(n(20,30)),console.log("kevin"),console.log(25),console.log(1.7)})()})();

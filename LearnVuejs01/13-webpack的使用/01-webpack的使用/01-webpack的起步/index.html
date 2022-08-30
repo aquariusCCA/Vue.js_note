@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    webpack 的使用
+    1. 創建 src 和 dist 資料夾。
+    2. 進入到目標資料夾，也就是有 dist 和 src 的這個資料夾。
+        dist: 存放打包後的 js 文件
+        src: 編寫 js 文件的原始碼
+    3. webpack ./src/main.js ./dist/bundle.js
+        使用 webpack 工具將 main.js 進行打包，
+        打包到 dist 目錄的 bundle.js。
+
+        為什麼只需要打包一個文件而已，而其他的文件不需要打包 ?
+            因為 webpack 在打包的時候，會去檢查你有沒有依賴其他的文件，
+            webpack 會自動幫你處理依賴。
+
+    4. 遇到 因為這個系統上已停用指令碼執行，所以無法載入 這個問題 ?
+        解決方案:
+            1. 以管理員的身分執行 PowerShell
+            2. 執行 Set-ExecutionPolicy RemoteSigned
+            3. 選擇 A 選項
+
+        原文網址: https://davidchenblog.com/posts/6ea8b647/
+
+--> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../../js/vue.js"></script>
+    <script src="./dist/bundle.js"></script>
+</head>
+<body>
+    
+</body>
+</html>
