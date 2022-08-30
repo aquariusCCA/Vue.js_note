@@ -1,0 +1,18 @@
+- 安裝 webpack 首先需要安裝 Node.js，Node.js 自帶了軟件包管理工具 (ndoe packages manager)
+
+- 查看自己的 Node 版本： node -v
+
+- 全局安裝 webpack (這裡先指定版本號 3.6.0，因為 Vue CLI2 依賴該版本)
+    指令: npm install webpack@3.6.0 -g
+        -g: 表示全局安裝的意思。
+
+    查看自己的 webpack 版本: webpack -version
+
+    --save-dev 是開發時依賴，項目打包後不需要繼續使用的。
+        1. cd 對應目錄
+        2. npm install webpack@3.6.0  --save-dev
+
+- 為什麼全局安裝後，還需要局部安裝呢 ?
+    - 在終端機直接執行 webpack 命令，使用的是全局安裝的 webpack。
+    - 當在 package.json 中定義 scripts 時，其中包含了 webpack 命令，
+    那麼使用的是局部 webpack。
