@@ -1,0 +1,33 @@
+入口和出口
+	- 我們考慮一下，如果每次使用 webpack 的命令都要寫上入口和出口作為參數，
+	就非常麻煩，有沒有一種方法可以將兩個參數寫到配置中，在運行時，直接讀取呢?
+	
+	- 當然可以，就是創建一個 webpack.config.js 文件
+	
+
+局部安裝
+    - 目前為止，我們使用的 webpack 是全局的 webpack，如果我們想要使用局部打包呢 ?
+        因為一個項目往往依賴特定的 webpack 版本，全局的版本可能跟這個項目的 webpack
+        版本不一致，導出打包出現問題。所以通常一個項目，都有自已局部的 webpack。
+
+    - 第一步，項目中需要安裝自己的局部 webpack
+        - 這裡我們讓局部安裝 webpack3.6.0
+        - Vue CLI3 已經升級到 webpack4，但是它將配置文件隱藏起來了，所以查看起來不是很方便。
+        - 指令: npm install webpack@3.6.0 --save-dev
+            表示開發時依賴
+
+    - 第二步，通過 node_modules/.bin/webpack 啟動 webpack 打包
+        - node_modules/.bin/webpack
+
+
+package.json 中定義啟動
+    但是，每次執行都要敲一長串有沒有覺得很不方便 ?
+    ok，我們可以在 package.json 的 scripts 中定義自己的
+    執行腳本。
+
+    package.json 中的 scripts 的腳本在執行時，會按照一定的順序
+    尋找命令對應的位置。
+        - 首先，會尋找本地的 node_modules/.bin 路徑中對應的命令。
+        - 如果沒有找到，會去全局的環境變量中尋找。
+        - 如何執行我們的 build 指令呢 ?
+            npm run build

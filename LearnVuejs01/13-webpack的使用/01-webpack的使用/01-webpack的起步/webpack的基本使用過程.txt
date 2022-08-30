@@ -15,7 +15,13 @@
 
 如何打包 ?
 	- 使用 webpack 的指令即可
+
 	- webpack  src/main.js  dist/bundle.js
+		使用 webpack 工具將 main.js 進行打包，打包到 dist 目錄的 bundle.js。
+
+	- 為什麼只需要打包一個文件而已，而其他的文件不需要打包 ?
+		因為 webpack 在打包的時候，會去檢查你有沒有依賴其他的文件，
+		webpack 會自動幫你處理依賴。
 
 
 使用打包後的文件
