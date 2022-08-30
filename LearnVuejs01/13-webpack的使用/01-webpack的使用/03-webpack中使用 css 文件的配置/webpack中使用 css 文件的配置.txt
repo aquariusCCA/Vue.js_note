@@ -1,0 +1,67 @@
+甚麼是 loader ?
+	- loader 是 webpack 中一個非常核心的概念。
+
+webpack 用來做什麼 ?
+	- 在我們之前的實例中，我們主要是用 webpack 來處理我們寫的 js 代碼，並且
+	webpack 會自動處理 js 之間相關依賴。
+
+	- 但是，在開發中我們不僅僅有基本的 js 代碼處理，我們也需要加載 css、圖片，
+	也包括一些高級的將 ES6 轉成 ES5 代碼，將 TypeScript 轉成 ES5 代碼，將
+	css、less 轉成 css，將 .jsx、.vue 文件轉成 js 文件等等。
+
+	- 對於 webpack 本身的能力來說，對於這些轉化是不支持的。
+
+	- 那怎麼辦呢 ? 給 webpack 擴展對應的 loader 就可以啦。
+
+css-loader 使用過程: 
+    -css-loader: 解析 css 文件後，使用 import 加載，並且返回 css 代碼
+
+	- 步驟一: 通過 npm 安裝需要使用的 loader
+		指令: npm install css-loader --save-dev 
+
+	- 步驟二: 在 webpack.config.js 文件中的 modules 關鍵字進行配置
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: ['css-loader'] // 
+                }
+            ]
+        }
+
+style-loader 使用過程:
+    - style-loader: 將模塊中的導出作為樣式添加到 DOM 中。
+
+	- 步驟一: 通過 npm 安裝需要使用的 loader
+		指令: npm install style-loader --save-dev
+
+	- 步驟二: 在 webpack.config.js 文件中的 modules 關鍵字進行配置
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    // 使用多個 loader 時，順序是從右向左。
+                    // 我們必須先解析 css 之後才可以將樣式添加到 DOM 中。
+                    use: ['style-loader', 'css-loader'] 
+                }
+            ]
+        }
+
+大部分 loader 我們都可以在 webpack 的官網中找到，並且學習對應的用法。
+
+
+
+css 文件處理 - 準備工作
+	- 項目開發過程中，我們必然需要添加很多的樣式，而樣式我們往往會寫到一個
+	單獨的文件中。
+		- 在 src 目錄中，創建一個 css 文件，其中創建一個 normal.css 文件。
+		- 我們也可以重新組織文件的目錄結構，將零散的 js 文件放在一個 js 文件夾中。
+
+	- normal.css 中的代碼非常地簡單，就是將 body 設置為 red。
+
+	- 但是，這個時候 normal.css 中 的樣式會生效嗎 ?
+		- 當然不會，因為我們壓根沒有引用到它。
+		- webpack 也不可能找到它，因為我們只有一個入口，webpack 會從入口開始查找其他依賴文件。
+		
+
+
