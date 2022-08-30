@@ -1,0 +1,24 @@
+less 文件處理 - 準備工作
+	- 如果我們希望在項目中使用 scss、less、stylus 來寫樣式，
+	webpack 是否可以幫助我們處理呢 ? (我們這裡以 less 為例，因為其他的都是一樣)
+
+	- 我們先創建一個 less 文件，依然放在 css 文件夾中。
+
+	- 還是需要安裝對應的 loader
+		指令: npm install --save-dev less-loader less
+		注意: 我們這裡安裝了 less，因為 webpack 會使用 less 對
+		less 文件進行編譯。
+
+	- 其次，修改對應的配置文件
+		添加一個 rules 選項，用於處理 .less 文件。
+		    {
+                // 我們現在沒有其他更多的選項，所以也可以使用上面數組的形式。
+                test: /\.less$/,
+                use: [{
+                    loader: "style-loader" // creates style nodes from JS strings
+                }, {
+                    loader: "css-loader" // translates CSS into CommonJS
+                }, {
+                    loader: "less-loader" // compiles Less to CSS
+                }]
+            }
