@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-箭頭函數中的 this 的使用</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 甚麼時候使用箭頭函數
+        // setTimeout(function (){
+        //     console.log(this); // window
+        // }, 1000)
+
+        // setTimeout(() => {
+        //     console.log(this); // window
+        // }, 1000)
+
+
+        // 
+        const obj = {
+            aaa() {
+                setTimeout(function(){
+                    console.log(this); // window
+                })
+
+                setTimeout(() => {
+                    console.log(this); //this
+                })
+            }
+        }
+
+        obj.aaa()
+</script>
+</html>

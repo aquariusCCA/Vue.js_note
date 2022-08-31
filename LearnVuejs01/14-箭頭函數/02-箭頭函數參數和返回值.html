@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-箭頭函數參數和返回值</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1. 參數問題
+        // 1-1. 放入兩個參數
+        const sum = (num1, num2) => {
+            return num1 + num2
+        }
+
+        // 1-2. 放入一個參數，可以省略小括號
+        const power = num => {
+            return num * num
+        }
+
+
+    // 2. 函數中
+        // 2-1. {} 中有多行代碼。
+        const test = () => {
+            // 1. 打印 Hello World
+            console.log('Hello World');
+
+            // 2. 打印 Hello Vue.js
+            console.log('Hello Vue.js');
+        }
+
+        // 2.2. {} 裡面只有一行代碼，可以將 {} 和 return 省略。
+            // const mul = (num1, num2) => {
+            //     return num1 + num2
+            // }
+            const mul = (num1, num2) => num1 + num2
+</script>
+</html>
